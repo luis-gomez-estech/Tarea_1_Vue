@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Tarea 1 - VUE</title>
+
+  <link rel="icon" type="image/png" href="imagenes/logo.ico" /> 
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="css/style.css"> 
+
+</head>
+
+<body>  
+
+  <div class="container">
+         
+            
+     <div id="app">
+
+        <!-- Aqui en el template le decimos que variables tienen que rellenarse para que aparezca algo, pero ademas
+        dentro del template le decimos con if o else que queremos que ocurra en funcion del genero, ya que  para el nombre solo con ponerlo en el template,
+        ya le estamos diciendo que tiene que rellenarse (sea lo que sea pero rellenarse) junto al genero (este rellenado con M o F) para que aparezca el encabezado,
+         -->
+
+        <template v-if = "nombre && genero">
+         
+         <!-- Ahora definimos esos if para el genero-->
+          <h1 v-if="genero.toLowerCase()=='m'">Hola, Señor {{ nombre }}</h1> <!-- Si es m, imprime Hola, Señor {{ nombre }}, donde nombre es el valor del input con v-model="nombre"-->
+          <h1 v-if="genero.toLowerCase()=='f'">Hola, Señora {{ nombre }}</h1>
+          <h1 v-if="genero.toLowerCase()!='m' && genero.toLowerCase()!='f'" class="error">Introduce un género válido</h1> <!-- Si es distinto de M y de F, imprime texto de error y le cambio color.-->
+
+        </template>
+
+
+        <label>Introduce tu nombre:</label> <br>
+        <input type="text" v-model="nombre">
+
+        <br>
+        
+        <label>Sexo (Introduce M o F):</label> <br><!-- Aunque le indico al usuario como tiene que introducirlo, en realidad no importa porque en el template le digo con toLowerCase() que no distinga entre mayusculas y minusculas -->    
+        <input type="text" v-model="genero" class="genero">
+
+
+    </div>
+  
+  
+</div>
+
+
+  <!-- SCRIPT -->
+
+  <!-- Libreria vue -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.js"> </script>
+
+  <!-- Script -->
+  <script>
+
+  new Vue({
+      el: "#app",
+      data: {
+        nombre: "", // Aqui lo dejamos vacio para decirle al input que inicialemnte no contenga nada, 
+        genero: "",
+      
+      }
+    })
+
+
+</script>
+ 
+</body>
+</html>
+
